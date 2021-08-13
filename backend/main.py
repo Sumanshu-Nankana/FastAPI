@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from core.config import settings
 
 
 # we can pass the metadata information for API
@@ -15,13 +16,14 @@ Hello World API
 **Return JSON format of Hello World **
 """
 
-app = FastAPI(title="JobBoard", 
-			 version="0.0.1",
-			description=description,
-			contact={
-			"name" : "Sumanshu Nankana",
-			"email" : "sumanshunankana@gmail.com"
-			})
+app = FastAPI(title=settings.PROJECT_TITLE,
+			 version=settings.PROJECT_VERSION,
+             description=description,
+			 contact={
+			 "name" : "Sumanshu Nankana",
+			 "email" : "sumanshunankana@gmail.com"
+			 }
+			 )
 
 
 
