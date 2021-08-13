@@ -1,0 +1,2 @@
+fastapi  # for fastapi
+uvicorn  # for server to run fastapi

@@ -1,0 +1,4 @@
+# exclude __pycache__ (bytecode .pyc or .pyo) folder and files
+__pycache__
+# exclude env (virtual environment) folder
+env
