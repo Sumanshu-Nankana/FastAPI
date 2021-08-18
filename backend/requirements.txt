@@ -1,2 +1,7 @@
-fastapi  # for fastapi
-uvicorn  # for server to run fastapi
+fastapi                # for fastapi
+uvicorn                # for server to run fastapi
+
+sqlalchemy             # for orm
+psycopg2-binary        # database adaptor which is require to connect to postgres via python
+
+python-dotenv          # to store environment variables in .env file, we can store in system, but python-dotenv is recommended
