@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from core.config import settings
-
+from db.session import engine
+from db.base_class import Base
 
 # we can pass the metadata information for API
 # some fields are of type string and some are of type dictionary (example - contact)
@@ -10,13 +11,18 @@ from core.config import settings
 # we can see all this metadata information on /docs path of application
 # http://localhost:8000/docs
 
+
+def create_tables():
+	Base.metadata.create_all(bind=engine)
+
 description = """
 Hello World API
 ## Heading
 **Return JSON format of Hello World **
 """
 
-app = FastAPI(title=settings.PROJECT_TITLE,
+def start_application():
+	app = FastAPI(title=settings.PROJECT_TITLE,
 			 version=settings.PROJECT_VERSION,
              description=description,
 			 contact={
@@ -24,8 +30,11 @@ app = FastAPI(title=settings.PROJECT_TITLE,
 			 "email" : "sumanshunankana@gmail.com"
 			 }
 			 )
+	create_tables()
+	return app
 
 
+app = start_application()
 
 @app.get('/')
 def hello_api():
