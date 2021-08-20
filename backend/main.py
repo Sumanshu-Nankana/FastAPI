@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from core.config import settings
 from db.session import engine
-from db.base_class import Base
+from db.base import Base
 
 # we can pass the metadata information for API
 # some fields are of type string and some are of type dictionary (example - contact)
