@@ -2,3 +2,5 @@
 __pycache__
 # exclude env (virtual environment) folder
 env
+# exclude database file (if we use sqlite)
+*.db
