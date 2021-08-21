@@ -5,3 +5,5 @@ sqlalchemy             # for orm
 psycopg2-binary        # database adaptor which is require to connect to postgres via python
 
 python-dotenv          # to store environment variables in .env file, we can store in system, but python-dotenv is recommended
+
+pydantic[email]        # for email-validation
