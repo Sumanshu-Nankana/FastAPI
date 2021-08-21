@@ -7,3 +7,6 @@ psycopg2-binary        # database adaptor which is require to connect to postgre
 python-dotenv          # to store environment variables in .env file, we can store in system, but python-dotenv is recommended
 
 pydantic[email]        # for email-validation
+
+# passlib[bcrypt]      # for password hashing (This gives some error)
+passlib                # for password hashing

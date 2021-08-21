@@ -4,3 +4,5 @@ __pycache__
 env
 # exclude database file (if we use sqlite)
 *.db
+# exclude swap files, created by vim/nano editor
+*.swp

@@ -4,3 +4,7 @@ uvicorn
 sqlalchemy
 pythn-dotenv
 psycopg2-binary
+
+pydantic[email]
+passlib
+
