@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from core.config import settings
 from db.session import engine
 from db.base import Base
+from apis.base import api_router
 
 # we can pass the metadata information for API
 # some fields are of type string and some are of type dictionary (example - contact)
@@ -21,6 +22,9 @@ Hello World API
 **Return JSON format of Hello World **
 """
 
+def include_router(app):
+	app.include_router(api_router)
+
 def start_application():
 	app = FastAPI(title=settings.PROJECT_TITLE,
 			 version=settings.PROJECT_VERSION,
@@ -31,6 +35,7 @@ def start_application():
 			 }
 			 )
 	create_tables()
+	include_router(app)
 	return app
 
 

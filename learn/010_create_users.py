@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from config import settings
-from database import engine
-from models import Base
-
+from database import engine, get_db
+from models import Base, User
+from schemas import UserCreate
+from hashing import Hasher
+from sqlalchemy.orm import Session
 
 
 desc = """
@@ -45,7 +47,26 @@ def get_items():
 def get_envvars():
     return {"database" : setting.DATABASE_URL}
 
+@app.post('/users', tags=["user"])
+def create_users(user: UserCreate, db:Session = Depends(get_db)):
+	hashed_password = Hasher.get_hash_password(user.password)	
+	user = User(email=user.email, password=hashed_password)
+	db.add(user)
+	db.commit()
+	db.refresh(user)
+	return user
 
-@app.post('/users', target=["users"])
-def create_users():
-	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
