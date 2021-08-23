@@ -8,3 +8,6 @@ psycopg2-binary
 pydantic[email]
 passlib
 
+pytest
+requests
+

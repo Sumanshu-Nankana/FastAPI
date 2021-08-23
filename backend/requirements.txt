@@ -10,3 +10,6 @@ pydantic[email]        # for email-validation
 
 # passlib[bcrypt]      # for password hashing (This gives some error)
 passlib                # for password hashing
+
+pytest                 # for testing
+requests               # for testing
