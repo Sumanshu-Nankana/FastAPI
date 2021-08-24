@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from datetime import date, datetime
+from datetime import date
 from typing import Optional
 
 class UserCreate(BaseModel):
@@ -14,16 +14,11 @@ class ShowUser(BaseModel):
 		orm_mode = True
 
 
-class ItemBase(BaseModel):
-	title : Optional[str]
-	description : Optional[str]
-	date_posted : Optional[date] = datetime.now().date()
-
-class ItemCreate(ItemBase):
+class ItemCreate(BaseModel):
 	title : str
 	description : str
 
-class ShowItem(ItemBase):
+class ShowItem(BaseModel):
 	title : str
 	description : str
 	date_posted : date
