@@ -5,7 +5,7 @@ from models import Base, User
 from schemas import UserCreate
 from hashing import Hasher
 from sqlalchemy.orm import Session
-from routers import users
+from routers import users, items
 
 desc = """
 This is project description
@@ -35,3 +35,4 @@ app = FastAPI(
              redoc_url=None)
 
 app.include_router(users.router)
+app.include_router(items.router)
