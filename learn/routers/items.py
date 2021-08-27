@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from schemas import ItemCreate, ShowItem
 from models import Items
@@ -13,4 +13,11 @@ def create_item(item: ItemCreate, db: Session = Depends(get_db)):
 	db.add(item)
 	db.commit()
 	db.refresh(item)
+	return item
+
+@router.get("/item/{id}", tags=["item"], response_model=ShowItem)
+def get_item_by_id(id:int, db: Session=Depends(get_db)):
+	item = db.query(Items).filter(Items.id==id).first()
+	if not item:
+		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Item with {id} does not exists")
 	return item

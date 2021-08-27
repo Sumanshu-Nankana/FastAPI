@@ -34,5 +34,6 @@ app = FastAPI(
                 "email" : "sumanshunankana@gmail.com"},
              redoc_url=None)
 
+# we can pass the prefix argument as well
 app.include_router(users.router)
 app.include_router(items.router)
