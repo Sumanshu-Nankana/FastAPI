@@ -34,3 +34,8 @@ def test_create_item(client):
 	data = {"title":"item1", "description":"this is item1"}
 	response = client.post("/item", json.dumps(data))
 	assert response.status_code == 200
+
+def test_retrieve_item_by_id(client):
+	response = client.get("/item/2")
+	assert response.status_code == 200
+	assert response.json()["title"] == "item1"
