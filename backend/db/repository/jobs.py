@@ -12,3 +12,7 @@ def create_new_job(job: JobCreate, db: Session, owner_id: int):
 def retrieve_job(id: int, db : Session):
 	job = db.query(Job).filter(Job.id ==id).first()
 	return job
+
+def list_jobs(db: Session):
+	jobs = db.query(Job).filter(Job.is_active==True).all()
+	return jobs
