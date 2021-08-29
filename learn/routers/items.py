@@ -5,6 +5,8 @@ from models import Items
 from database import get_db
 from datetime import datetime
 from typing import List
+from fastapi.encoders import jsonable_encoder
+
 
 router = APIRouter()
 
@@ -29,3 +31,22 @@ def get_item_by_id(id:int, db: Session=Depends(get_db)):
 		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Item with {id} does not exists")
 	return item
 
+# Method-1
+@router.put("/item/update/{id}", tags=["item"])
+def update_item_by_id(id:int, item: ItemCreate, db: Session=Depends(get_db)):
+	existing_item = db.query(Items).filter(Items.id==id)
+	if not existing_item.first():
+		return {"message" : f"No Details found for Item ID {id}"}
+	existing_item.update(jsonable_encoder(item))
+	db.commit()
+	return {"message" : f"Details successfully updated for Item ID {id}"}
+
+# Method-2
+@router.put("/item/update1/{id}", tags=["item"])
+def update1_item_by_id(id: int, item: ItemCreate, db:Session=Depends(get_db)):
+	existing_item = db.query(Items).filter(Items.id==id)
+	if not existing_item.first():
+		return {"message" : f"No details found for Item ID {id}"}
+	existing_item.update(jsonable_encoder(item))
+	db.commit()
+	return {"message" : f"Details successfully updated for Item ID {id}"}
