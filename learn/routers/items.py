@@ -47,6 +47,6 @@ def update1_item_by_id(id: int, item: ItemCreate, db:Session=Depends(get_db)):
 	existing_item = db.query(Items).filter(Items.id==id)
 	if not existing_item.first():
 		return {"message" : f"No details found for Item ID {id}"}
-	existing_item.update(jsonable_encoder(item))
+	existing_item.update(item.__dict__)
 	db.commit()
 	return {"message" : f"Details successfully updated for Item ID {id}"}
