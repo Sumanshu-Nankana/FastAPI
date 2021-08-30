@@ -50,3 +50,12 @@ def update1_item_by_id(id: int, item: ItemCreate, db:Session=Depends(get_db)):
 	existing_item.update(item.__dict__)
 	db.commit()
 	return {"message" : f"Details successfully updated for Item ID {id}"}
+
+@router.delete("/item/delete/{id}", tags=["item"])
+def delete_item_by_id(id: int, db:Session=Depends(get_db)):
+	existing_item = db.query(Items).filter(Items.id==id)
+	if not existing_item.first():
+		return {"message" : f"No Details found for Item ID {id}"}
+	existing_item.delete()
+	db.commit()
+	return {"message" : f"Item ID {id} has been successfully deleted"}
