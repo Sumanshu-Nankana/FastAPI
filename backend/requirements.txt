@@ -13,3 +13,5 @@ passlib                # for password hashing
 
 pytest                 # for testing
 requests               # for testing
+
+pytest-cov             # for code coverage report; pytest --cov="." ; pytest --cov="." --cov-report html

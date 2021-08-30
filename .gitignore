@@ -6,3 +6,7 @@ env
 *.db
 # exclude swap files, created by vim/nano editor
 *.swp
+# exclude .coverage file which get generated using pytest-cov
+.coverage
+# exclude htmlcov report folder
+htmlcov

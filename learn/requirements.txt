@@ -11,3 +11,4 @@ passlib
 pytest
 requests
 
+pytest-cov
