@@ -6,12 +6,12 @@ from database import get_db
 from datetime import datetime
 from typing import List
 from fastapi.encoders import jsonable_encoder
-
+from routers.login import oauth2_scheme
 
 router = APIRouter()
 
 @router.post("/item", tags=["item"], response_model=ShowItem)
-def create_item(item: ItemCreate, db: Session = Depends(get_db)):
+def create_item(item: ItemCreate, db: Session = Depends(get_db), token:str=Depends(oauth2_scheme)):
 	item = Items(**item.dict(), date_posted = datetime.now().date(), owner_id=3)
 	db.add(item)
 	db.commit()

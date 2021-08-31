@@ -1,7 +1,7 @@
 import json
 
 
-def test_create_job(client):
+def test_create_job(client, normal_user_token_headers):
 	data = {
 			"title" : "FastAPI Developer",
 			"company" : "Wipro",
@@ -10,7 +10,7 @@ def test_create_job(client):
 			"description" : "We are hiring FastAPI Developers",
 			"date_posted" : "2022-07-20"
 		   }
-	response = client.post("/job/create-job", json.dumps(data))
+	response = client.post("/job/create-job", json.dumps(data), headers=normal_user_token_headers)
 	assert response.status_code == 200
 
 
