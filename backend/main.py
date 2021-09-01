@@ -14,7 +14,8 @@ from apis.base import api_router
 
 
 def create_tables():
-	Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
+
 
 description = """
 Hello World API
@@ -22,25 +23,26 @@ Hello World API
 **Return JSON format of Hello World **
 """
 
+
 def include_router(app):
-	app.include_router(api_router)
+    app.include_router(api_router)
+
 
 def start_application():
-	app = FastAPI(title=settings.PROJECT_TITLE,
-			 version=settings.PROJECT_VERSION,
-             description=description,
-			 contact={
-			 "name" : "Sumanshu Nankana",
-			 "email" : "sumanshunankana@gmail.com"
-			 }
-			 )
-	create_tables()
-	include_router(app)
-	return app
+    app = FastAPI(
+        title=settings.PROJECT_TITLE,
+        version=settings.PROJECT_VERSION,
+        description=description,
+        contact={"name": "Sumanshu Nankana", "email": "sumanshunankana@gmail.com"},
+    )
+    create_tables()
+    include_router(app)
+    return app
 
 
 app = start_application()
 
-@app.get('/')
+
+@app.get("/")
 def hello_api():
-	return {"detail":"hello World"}
+    return {"detail": "hello World"}
