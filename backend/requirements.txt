@@ -9,6 +9,7 @@ python-dotenv          # to store environment variables in .env file, we can sto
 pydantic[email]        # for email-validation
 
 # passlib[bcrypt]      # for password hashing (This gives some error)
+bcrypt                 # required for passlib module
 passlib                # for password hashing
 
 pytest                 # for testing

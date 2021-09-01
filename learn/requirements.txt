@@ -6,6 +6,8 @@ python-dotenv
 psycopg2-binary
 
 pydantic[email]
+
+bcrypt
 passlib
 
 pytest
