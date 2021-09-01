@@ -12,20 +12,21 @@ from config import settings
 # we can change Swagger UI URL by using parameter docs_url
 # You can disable it by setting redoc_url=None
 
-app = FastAPI(docs_url="/documentation", 
-			  redoc_url="/redocumentation",
-			  title=settings.PROJECT_TITLE,
-			  version=settings.PROJECT_VERSION)
+app = FastAPI(
+    docs_url="/documentation",
+    redoc_url="/redocumentation",
+    title=settings.PROJECT_TITLE,
+    version=settings.PROJECT_VERSION,
+)
 
 
 # we can use our own tags using 'tags' parameter
-@app.get('/users', tags=["users"])
+@app.get("/users", tags=["users"])
 def hello_api():
-    return {"detail":"hello user"}
+    return {"detail": "hello user"}
+
 
 # we can use our own tags using 'tags' parameter
-@app.get('/items', tags=["items"])
+@app.get("/items", tags=["items"])
 def hello_api():
-    return {"detail":"hello item"}
-
-
+    return {"detail": "hello item"}

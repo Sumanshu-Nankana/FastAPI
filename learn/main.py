@@ -12,27 +12,21 @@ This is project description
 """
 
 tags_metadata = [
-            {
-                "name" : "user",
-                "description": "This is user route"
-            },
-            {
-                "name" : "products",
-                "description" : "This is product route"
-            }
+    {"name": "user", "description": "This is user route"},
+    {"name": "products", "description": "This is product route"},
 ]
 
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-             title=settings.PROJECT_TITLE,
-             version=settings.PROJECT_VERSION,
-             description=desc,
-             openapi_tags=tags_metadata,
-             contact = {"name" : "Sumanshu Nankana",
-                "email" : "sumanshunankana@gmail.com"},
-             redoc_url=None)
+    title=settings.PROJECT_TITLE,
+    version=settings.PROJECT_VERSION,
+    description=desc,
+    openapi_tags=tags_metadata,
+    contact={"name": "Sumanshu Nankana", "email": "sumanshunankana@gmail.com"},
+    redoc_url=None,
+)
 
 # we can pass the prefix argument as well
 app.include_router(users.router)

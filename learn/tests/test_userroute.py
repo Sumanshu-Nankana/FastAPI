@@ -31,9 +31,10 @@
 
 import json
 
+
 def test_create_user(client):
-	data = {"email":"a@test.com", "password":"test1pass"}
-	response = client.post("/user", json.dumps(data))
-	assert response.status_code == 200
-	assert response.json()["email"] == "a@test.com"
-	assert response.json()["is_active"] == True
+    data = {"email": "a@test.com", "password": "test1pass"}
+    response = client.post("/user", json.dumps(data))
+    assert response.status_code == 200
+    assert response.json()["email"] == "a@test.com"
+    assert response.json()["is_active"] == True

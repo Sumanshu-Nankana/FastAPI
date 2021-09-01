@@ -2,7 +2,7 @@ fastapi
 uvicorn
 
 sqlalchemy
-pythn-dotenv
+python-dotenv
 psycopg2-binary
 
 pydantic[email]
@@ -12,3 +12,8 @@ pytest
 requests
 
 pytest-cov
+
+python-jose
+
+autopep8
+black

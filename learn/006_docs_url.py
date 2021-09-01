@@ -15,11 +15,12 @@ app = FastAPI(docs_url="/documentation", redoc_url="/redocumentation")
 
 
 # we can use our own tags using 'tags' parameter
-@app.get('/users', tags=["users"])
+@app.get("/users", tags=["users"])
 def hello_api():
-	return {"detail":"hello user"}
+    return {"detail": "hello user"}
+
 
 # we can use our own tags using 'tags' parameter
-@app.get('/items', tags=["items"])
+@app.get("/items", tags=["items"])
 def hello_api():
-	return {"detail":"hello item"}
+    return {"detail": "hello item"}

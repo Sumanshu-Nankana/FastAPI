@@ -15,16 +15,14 @@ Hello World API
 **Return JSON format of Hello World **
 """
 
-app = FastAPI(title="JobBoard", 
-			 version="0.0.1",
-			description=description,
-			contact={
-			"name" : "Sumanshu Nankana",
-			"email" : "sumanshunankana@gmail.com"
-			})
+app = FastAPI(
+    title="JobBoard",
+    version="0.0.1",
+    description=description,
+    contact={"name": "Sumanshu Nankana", "email": "sumanshunankana@gmail.com"},
+)
 
 
-
-@app.get('/')
+@app.get("/")
 def hello_api():
-	return {"detail":"hello World"}
+    return {"detail": "hello World"}
