@@ -30,15 +30,16 @@
 # client = TestClient(app)
 
 import json
+from config import settings
 
 
-def test_create_item(client):
-    data = {"title": "item1", "description": "this is item1"}
-    response = client.post("/item", json.dumps(data))
+def test_create_item(client, token_headers):
+    data = {"title": settings.TEST_ITEM, "description": settings.TEST_ITEM_DESC}
+    response = client.post("/item", json.dumps(data), headers=token_headers)
     assert response.status_code == 200
 
 
 def test_retrieve_item_by_id(client):
-    response = client.get("/item/2")
+    response = client.get("/item/1")
     assert response.status_code == 200
-    assert response.json()["title"] == "item1"
+    assert response.json()["title"] == settings.TEST_ITEM

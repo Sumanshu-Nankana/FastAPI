@@ -13,10 +13,7 @@ from config import settings
 router = APIRouter()
 
 
-@router.post("/item", tags=["item"], response_model=ShowItem)
-def create_item(
-    item: ItemCreate, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
-):
+def get_user_from_token(db, token):
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, settings.ALGORITHM)
         username = payload.get("sub")
@@ -36,6 +33,14 @@ def create_item(
             status_code=status.HTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
         )
+    return user
+
+
+@router.post("/item", tags=["item"], response_model=ShowItem)
+def create_item(
+    item: ItemCreate, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
+):
+    user = get_user_from_token(db, token)
     owner_id = user.id
     item = Items(**item.dict(), date_posted=datetime.now().date(), owner_id=owner_id)
     db.add(item)
@@ -69,20 +74,7 @@ def update_item_by_id(
     db: Session = Depends(get_db),
     token: str = Depends(oauth2_scheme),
 ):
-    try:
-        payload = jwt.decode(token, settings.SECRET_KEY, settings.ALGORITHM)
-        username = payload.get("sub")
-        if not username:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Could not validate crdentials",
-            )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-        )
-    user = db.query(User).filter(User.email == username).first()
+    user = get_user_from_token(db, token)
     existing_item = db.query(Items).filter(Items.id == id)
     if not existing_item.first():
         return {"message": f"No Details found for Item ID {id}"}
@@ -102,20 +94,7 @@ def update1_item_by_id(
     db: Session = Depends(get_db),
     token: str = Depends(oauth2_scheme),
 ):
-    try:
-        payload = jwt.decode(token, settings.SECRET_KEY, settings.ALGORITHM)
-        username = payload.get("sub")
-        if not username:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Could not validate crdentials",
-            )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-        )
-    user = db.query(User).filter(User.email == username).first()
+    user = get_user_from_token(db, token)
     existing_item = db.query(Items).filter(Items.id == id)
     if not existing_item.first():
         return {"message": f"No Details found for Item ID {id}"}
@@ -131,20 +110,7 @@ def update1_item_by_id(
 def delete_item_by_id(
     id: int, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
 ):
-    try:
-        payload = jwt.decode(token, settings.SECRET_KEY, settings.ALGORITHM)
-        username = payload.get("sub")
-        if not username:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Could not validate crdentials",
-            )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-        )
-    user = db.query(User).filter(User.email == username).first()
+    user = get_user_from_token(db, token)
     existing_item = db.query(Items).filter(Items.id == id)
     if not existing_item.first():
         return {"message": f"No Details found for Item ID {id}"}
