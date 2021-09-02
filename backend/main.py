@@ -3,6 +3,7 @@ from core.config import settings
 from db.session import engine
 from db.base import Base
 from apis.base import api_router
+from webapps.jobs.base import api_router as webapp_router
 
 # we can pass the metadata information for API
 # some fields are of type string and some are of type dictionary (example - contact)
@@ -26,7 +27,7 @@ Hello World API
 
 def include_router(app):
     app.include_router(api_router)
-
+    app.include_router(webapp_router)
 
 def start_application():
     app = FastAPI(
@@ -41,8 +42,3 @@ def start_application():
 
 
 app = start_application()
-
-
-@app.get("/")
-def hello_api():
-    return {"detail": "hello World"}

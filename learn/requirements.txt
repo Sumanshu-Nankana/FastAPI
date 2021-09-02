@@ -19,3 +19,5 @@ python-jose
 
 autopep8
 black
+
+jinja2
