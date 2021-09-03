@@ -17,8 +17,8 @@ tags_metadata = [
     {"name": "products", "description": "This is product route"},
 ]
 
-
-Base.metadata.create_all(bind=engine)
+# commented this line, because we have shifted to alembic migrations
+# Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=settings.PROJECT_TITLE,

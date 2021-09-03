@@ -22,3 +22,5 @@ python-jose            # for JWT tokens (It's a superset of pyjwt library)
 python-multipart       # for form data
 
 jinja2                 # for html templates
+
+alembic                # for db migrations

@@ -21,3 +21,5 @@ autopep8
 black
 
 jinja2
+
+alembic
