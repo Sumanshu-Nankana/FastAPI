@@ -9,8 +9,8 @@
 -  \q
 
 ## How to check and restart postgresql service in Ubuntu
--  sudo systemctl status postgresql    (to check status of postgresql service)
--  sudo service postgresql restart     (to restart the postgresql service)
+-  ```sudo systemctl status postgresql```    (to check status of postgresql service)
+-  ```sudo service postgresql restart```     (to restart the postgresql service)
 
 
 ## Commands/Steps for the SQLAlchemy alembic
