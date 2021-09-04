@@ -3,5 +3,16 @@
 	<title> Item Home Page </title>
 {% endblock %}
 {% block content %}
-	<h1> This is ITEM HOME Page </h1>
+	<div class="container">
+		<h3> All Items... </h3>
+		<div class="row">
+			{% for item in items %}
+				<div class="col">
+					{% with obj=item %}
+						{% include 'card.html' %}
+					{% endwith %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}
