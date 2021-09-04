@@ -24,3 +24,5 @@ python-multipart       # for form data
 jinja2                 # for html templates
 
 alembic                # for db migrations
+
+aiofiles               # for serving static files

@@ -4,6 +4,9 @@ from db.session import engine
 from db.base import Base
 from apis.base import api_router
 from webapps.jobs.base import api_router as webapp_router
+from fastapi.staticfiles import StaticFiles
+
+
 
 # we can pass the metadata information for API
 # some fields are of type string and some are of type dictionary (example - contact)
@@ -29,6 +32,11 @@ def include_router(app):
     app.include_router(api_router)
     app.include_router(webapp_router)
 
+
+def configure_static(app):
+	app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
 def start_application():
     app = FastAPI(
         title=settings.PROJECT_TITLE,
@@ -38,7 +46,7 @@ def start_application():
     )
     create_tables()
     include_router(app)
+    configure_static(app)
     return app
-
 
 app = start_application()

@@ -7,6 +7,8 @@ from hashing import Hasher
 from sqlalchemy.orm import Session
 from routers import users, items, login
 from webapps.routers import items as web_items
+from fastapi.staticfiles import StaticFiles
+
 
 desc = """
 This is project description
@@ -28,6 +30,8 @@ app = FastAPI(
     contact={"name": "Sumanshu Nankana", "email": "sumanshunankana@gmail.com"},
     redoc_url=None,
 )
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # we can pass the prefix argument as well
 app.include_router(users.router)
