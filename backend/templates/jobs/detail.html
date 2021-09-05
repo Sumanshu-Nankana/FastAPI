@@ -1,0 +1,38 @@
+{% extends "shared/base.html" %}
+
+{% block title %}
+<title>Job Detail</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Job Detail</h1>
+  <table class="table">
+    <thead>
+    <tbody>
+      <tr>
+        <th scope="row">Job Title</th>
+        <td>{{job.title}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Job Company</th>
+        <td>{{job.company}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Company URL</th>
+        <td colspan="2">{{job.company_url}}</td>
+      </tr>
+	 <tr>
+		<th scope="row">Description</th>
+		<td colspan="2">{{job.description}}</td>
+	 </tr>
+	 <tr>
+       <th scope="row">Location</th>
+       <td colspan="2">{{job.location}}</td>
+	 </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
