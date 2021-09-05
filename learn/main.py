@@ -7,6 +7,7 @@ from hashing import Hasher
 from sqlalchemy.orm import Session
 from routers import users, items, login
 from webapps.routers import items as web_items
+from webapps.routers import users as web_users
 from fastapi.staticfiles import StaticFiles
 
 
@@ -38,3 +39,4 @@ app.include_router(users.router)
 app.include_router(items.router)
 app.include_router(login.router)
 app.include_router(web_items.router)
+app.include_router(web_users.router)

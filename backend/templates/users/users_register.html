@@ -1,0 +1,26 @@
+{% extends 'shared/base.html' %}
+
+{% block title %}
+	<title>User Registration</title>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h1>User Registration</h1>
+		<form method="POST">
+			<div class="mb-3">
+				<label>Username</label>
+				<input type="text" required class="form-control" name="username" value="{{username}}" placeholder="username">
+			</div>
+			<div class="mb=3">
+				<label>Email</label>
+				<input type="email" required class="form-control" name="email" value="{{email}}" placeholder="email">
+			</div>
+			<div class="mb-3">
+				<label>Password</label>
+				<input type="password" required class="form-control" name="password" value="{{password}}" placeholder="password">
+			</div>
+			<button type="submit" class="btn btn-primary">Register</button>
+		</form>
+	</div>
+{% endblock %}

@@ -3,7 +3,7 @@ from core.config import settings
 from db.session import engine
 from db.base import Base
 from apis.base import api_router
-from webapps.jobs.base import api_router as webapp_router
+from webapps.base import api_router as webapp_router
 from fastapi.staticfiles import StaticFiles
 
 
