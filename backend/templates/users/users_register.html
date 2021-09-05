@@ -7,6 +7,11 @@
 {% block content %}
 	<div class="container">
 		<h1>User Registration</h1>
+		<div class="text-danger font-weight-bold">
+			{% for error in errors %}
+				<li>{{error}}</li>
+			{% endfor %}
+		</div>
 		<form method="POST">
 			<div class="mb-3">
 				<label>Username</label>
