@@ -7,7 +7,6 @@ from webapps.base import api_router as webapp_router
 from fastapi.staticfiles import StaticFiles
 
 
-
 # we can pass the metadata information for API
 # some fields are of type string and some are of type dictionary (example - contact)
 # https://fastapi.tiangolo.com/tutorial/metadata/
@@ -34,7 +33,7 @@ def include_router(app):
 
 
 def configure_static(app):
-	app.mount("/static", StaticFiles(directory="static"), name="static")
+    app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 def start_application():
@@ -48,5 +47,6 @@ def start_application():
     include_router(app)
     configure_static(app)
     return app
+
 
 app = start_application()

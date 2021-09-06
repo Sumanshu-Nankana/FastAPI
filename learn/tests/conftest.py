@@ -24,6 +24,7 @@ TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engin
 
 Base.metadata.create_all(bind=engine)
 
+
 @pytest.fixture
 def client() -> Generator[TestClient, Any, None]:
     def override_get_db():
