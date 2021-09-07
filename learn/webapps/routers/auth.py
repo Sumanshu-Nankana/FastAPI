@@ -41,15 +41,17 @@ async def login(response: Response, request: Request, db: Session = Depends(get_
             if Hasher.verify_password(password, user.password):
                 data = {"sub": email}
                 jwt_token = jwt.encode(
-                    	data, settings.SECRET_KEY, algorithm=settings.ALGORITHM
-                	)
-                	# if we redirect response in below way, it will not set the cookie
-                	# return responses.RedirectResponse("/?msg=Login Successfull", status_code=status.HTTP_302_FOUND)
+                    data, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+                )
+                # if we redirect response in below way, it will not set the cookie
+                # return responses.RedirectResponse("/?msg=Login Successfull", status_code=status.HTTP_302_FOUND)
                 msg = "Login Successful"
                 response = templates.TemplateResponse(
-                    	"login.html", {"request": request, "msg": msg}
-                	)
-                response.set_cookie(key="access_token", value=f"Bearer {jwt_token}", httponly=True)
+                    "login.html", {"request": request, "msg": msg}
+                )
+                response.set_cookie(
+                    key="access_token", value=f"Bearer {jwt_token}", httponly=True
+                )
                 return response
             else:
                 errors.append("Invalid Password")
