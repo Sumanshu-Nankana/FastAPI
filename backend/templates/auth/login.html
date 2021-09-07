@@ -1,3 +1,4 @@
+
 {% extends 'shared/base.html' %}
 
 {% block title %}
@@ -8,17 +9,18 @@
 	<div class="container">
 		<h1>Login Page ! </h1>
 
+		{% if msg %}
+			<div class="alert alert-success" role="alert">
+				  {{msg}}
+			</div>
+		{% endif %}
+
 		{% for error in errors %}
 			<div class="alert alert-danger" role="alert">
 				{{ error }}
 			</div>
 		{% endfor %}
 
-		{% if msg %}
-			<div class="alert alert-success" role="alert">
-				  {{msg}}
-			</div>
-		{% endif %}
 		<form method="POST">
   			<div class="mb-3">
     			<label for="email" class="form-label">Email address</label>

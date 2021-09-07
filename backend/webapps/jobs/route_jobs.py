@@ -25,3 +25,8 @@ def job_detail(id: int, request: Request, db: Session = Depends(get_db)):
     return templates.TemplateResponse(
         "jobs/detail.html", {"request": request, "job": job}
     )
+
+
+@router.get("/post-a-job")
+def create_job(request: Request):
+    return templates.TemplateResponse("jobs/create_job.html", {"request": request})

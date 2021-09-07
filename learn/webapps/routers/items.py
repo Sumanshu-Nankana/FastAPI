@@ -23,3 +23,8 @@ def item_detail(request: Request, id: int, db: Session = Depends(get_db)):
     return templates.TemplateResponse(
         "item_detail.html", {"request": request, "item": item, "email": email}
     )
+
+
+@router.get("/create-an-item")
+def create_an_item(request: Request):
+    return templates.TemplateResponse("create_item.html", {"request": request})
