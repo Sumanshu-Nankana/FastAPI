@@ -7,6 +7,11 @@
 {% block content %}
 	<div class="container">
 		<h1>Create an Item</h1>
+		{% for error in errors %}
+			<div class="alert alert-danger" role="alert">
+  				{{ error }}
+			</div>
+		{% endfor %}
 		<form method="POST">
 		  <div class="mb-3">
 		    <label for="title" class="form-label">Item Title</label>
@@ -17,8 +22,7 @@
     		<textarea class="form-control" required name="description" placeholder="Enter item description"></textarea>
 			<div class="form-text">Describe all details about items</div>
   		</div>
-  		<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 {% endblock %}

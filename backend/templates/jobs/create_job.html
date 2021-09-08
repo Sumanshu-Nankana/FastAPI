@@ -7,6 +7,11 @@
 {% block content %}
 	<div class="container">
 		<h3 class="text-center display">Create a Job Post</h3>
+		{% for error in errors %}
+			<div class="alert alert-danger" role="alert">
+				{{ error }}
+			</div>
+		{% endfor %}
 		<form method="POST">
 			<div class="mb-3">
 				<label for="title" class="form-label">Job Title</label>
@@ -17,8 +22,8 @@
 				<input type="text" required class="form-control" name="company" value="{{company}}" placeholder="Company Name e.g. Google">
 			</div>
 			<div class="mb-3">
-				<label for="job_url" class="form-label">Job URL</label>
-				<input type="text" class="form-control" name="job_url" value="{{job_url}}" placeholder="Company URL e.g. https://www.python.org">
+				<label for="company_url" class="form-label">Company URL</label>
+				<input type="text" class="form-control" name="company_url" value="{{company_url}}" placeholder="Company URL e.g. https://www.python.org">
 			</div>
 			<div class="mb-3">
 				<label for="location" class="form-label">Job Location</label>
