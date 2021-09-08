@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	<title>Delete Item</title>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h3> DELETE ITEMS </h3>
+		{% for error in errors %}
+			<div class="alert alert-danger" role="alert">
+				{{ error }}
+			</div>
+		{% endfor %}
+		<table class="table">
+  			<thead>
+    			<tr>
+      				<th scope="col">S.No.</th>
+      				<th scope="col">Title</th>
+      				<th scope="col">Description</th>
+      				<th scope="col">Action</th>
+    			</tr>
+  			</thead>
+  			<tbody>
+				{% for item in items %}
+    			<tr>
+      				<th scope="row">{{ loop.index }}</th>
+      				<td>{{ item.title }}</td>
+      				<td>{{ item.description }}</td>
+      				<td><button class="btn btn-danger">Delete</button></td>
+    			</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

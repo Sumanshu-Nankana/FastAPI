@@ -89,3 +89,32 @@ async def create_an_item(request: Request, db: Session = Depends(get_db)):
         return templates.TemplateResponse(
             "create_item.html", {"request": request, "errors": errors}
         )
+
+
+@router.get("/delete-item")
+def show_items_to_delete(request: Request, db: Session = Depends(get_db)):
+    errors = []
+    token = request.cookies.get("access_token")
+    if token is None:
+        errors.append("Kindly Login/Authenticate")
+        return templates.TemplateResponse(
+            "show_items_to_delete.html", {"request": request, "errors": errors}
+        )
+    else:
+        try:
+            scheme, _, param = token.partition(" ")
+            payload = jwt.decode(
+                param, settings.SECRET_KEY, algorithms=settings.ALGORITHM
+            )
+            email = payload.get("sub")
+            user = db.query(User).filter(User.email == email).first()
+            items = db.query(Items).filter(Items.owner_id == user.id).all()
+            return templates.TemplateResponse(
+                "show_items_to_delete.html", {"request": request, "items": items}
+            )
+        except Exception as e:
+            print(e)
+            errors.append("Something is wrong!!, May be you are not Authenticated")
+            return templates.TemplateResponse(
+                "show_items_to_delete.html", {"request": request, "errors": errors}
+            )

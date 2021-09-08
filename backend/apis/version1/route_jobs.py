@@ -59,7 +59,7 @@ def update_job(
             detail=f"Job with id {id} does not exists",
         )
     if job.owner_id == current_user.id or current_user.is_superuser:
-        update_job_by_id(id=id, job=job, db=db, owner_id=owner_id)
+        update_job_by_id(id=id, job=job, db=db, owner_id=current_user.owner_id)
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED, detail="You are not permitted"
     )

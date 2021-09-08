@@ -1,4 +1,5 @@
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
+from apis.utils import OAuth2PasswordBearerWithCookie
 from fastapi import Depends
 from fastapi import APIRouter, HTTPException, status
 from db.session import get_db
@@ -45,7 +46,7 @@ def login_for_access_token(
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login/token")
+oauth2_scheme = OAuth2PasswordBearerWithCookie(tokenUrl="/login/token")
 
 
 def get_current_user_from_token(
