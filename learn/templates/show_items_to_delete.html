@@ -12,6 +12,8 @@
 				{{ error }}
 			</div>
 		{% endfor %}
+
+		<div id="result" class="text-danger"></div>
 		<table class="table">
   			<thead>
     			<tr>
@@ -27,10 +29,21 @@
       				<th scope="row">{{ loop.index }}</th>
       				<td>{{ item.title }}</td>
       				<td>{{ item.description }}</td>
-      				<td><button class="btn btn-danger">Delete</button></td>
+      				<td><button class="btn btn-danger" onclick="delete_item({{item.id}})">Delete</button></td>
     			</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
+{% endblock %}
+
+{% block script %}
+	<script type="text/javascript">
+		function delete_item(id)
+		{
+			fetch("/item/delete/"+id, {method:'DELETE'})
+			.then(response => response.json())
+			.then(data => document.getElementById("result").innerHTML = data.message)
+		}
+	</script>
 {% endblock %}
