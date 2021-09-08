@@ -18,7 +18,7 @@ pytest-cov
 python-jose
 
 autopep8
-black
+black   # black . --exclude=env
 
 jinja2
 
