@@ -1,6 +1,9 @@
 ## This repository contains the FAST-API Learning Documentation, Code
 ## 
 
+## YouTube Videos for explanation of all available code
+[You Tube - FastAPI Videos](https://www.youtube.com/playlist?list=PLaNsxqNgctlM0CEzKBidDbYVmNsoBK8Ss "You Tube - Fast API")
+
 ## How to change the Default password for 'postgres'
 -  su root
 -  su postgres
