@@ -3,7 +3,7 @@ from fastapi import Request, status, responses
 from fastapi.security.utils import get_authorization_scheme_param
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from db.repository.jobs import list_jobs
+from db.repository.jobs import list_jobs, search_job
 from db.repository.jobs import retrieve_job, create_new_job
 from sqlalchemy.orm import Session
 from db.session import get_db
@@ -11,6 +11,7 @@ from db.models.users import User
 from apis.version1.route_login import get_current_user_from_token
 from webapps.jobs.forms import JobCreateForm
 from schemas.jobs import JobCreate
+from typing import Optional
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
@@ -65,4 +66,12 @@ def show_jobs_to_delete(request: Request, db: Session = Depends(get_db)):
     jobs = list_jobs(db=db)
     return templates.TemplateResponse(
         "jobs/show_jobs_to_delete.html", {"request": request, "jobs": jobs}
+    )
+
+
+@router.get("/search/")
+def search(query: Optional[str], request: Request, db: Session = Depends(get_db)):
+    jobs = search_job(query, db=db)
+    return templates.TemplateResponse(
+        "jobs/homepage.html", {"request": request, "jobs": jobs}
     )
