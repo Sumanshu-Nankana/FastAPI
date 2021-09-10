@@ -5,6 +5,7 @@ from db.base import Base
 from apis.base import api_router
 from webapps.base import api_router as webapp_router
 from fastapi.staticfiles import StaticFiles
+from fastapi_pagination import add_pagination
 
 
 # we can pass the metadata information for API

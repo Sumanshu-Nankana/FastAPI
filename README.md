@@ -4,6 +4,9 @@
 ## YouTube Videos for explanation of all available code
 [You Tube - FastAPI Videos](https://www.youtube.com/playlist?list=PLaNsxqNgctlM0CEzKBidDbYVmNsoBK8Ss "You Tube - Fast API")
 
+## Credits to Sourabh Sinha for Udemy course 
+Course Name: FastAPI Full Stack Web Development (API + Webapp)
+
 ## How to change the Default password for 'postgres'
 -  su root
 -  su postgres

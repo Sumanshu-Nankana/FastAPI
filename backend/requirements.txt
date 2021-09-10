@@ -28,3 +28,5 @@ alembic                # for db migrations
 aiofiles               # for serving static files
 
 black                  # for formatting the code command :  black . --exclude=env
+
+fastapi-pagination     # for pagination in fast-api
