@@ -14,7 +14,7 @@
 		{% endfor %}
 
 		<div id="result" class="text-danger"></div>
-		<table class="table">
+		<table id="datatable" class="table table-striped">
   			<thead>
     			<tr>
       				<th scope="col">S.No.</th>
@@ -38,6 +38,12 @@
 {% endblock %}
 
 {% block script %}
+	<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$("#datatable").DataTable()
+	});
+	</script>
 	<script type="text/javascript">
 		function delete_item(id)
 		{

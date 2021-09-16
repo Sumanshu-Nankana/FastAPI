@@ -15,7 +15,7 @@
 
 		<div class="row">
 			<table id="datatable" class="table table-striped">
-				<thead>
+				<thread>
 					<tr>
 						<th scope="col">Sr.No.</th>
 						<th scope="col">Title</th>
@@ -24,11 +24,12 @@
 						<th scope="col">Location</th>
 						<th scope="col">Action</th>
 					</tr>
-				</thead>
+				</thread>
 				<tbody>
 					{% for job in jobs %}
 						<tr>
-							<th scope="row">{{loop.index}}</th>
+							<!--<th scope="row">{{loop.index}}</th>-->
+							<td>{{loop.index}}</td>
 							<td>{{job.title}}</td>
 							<td>{{job.company}}</td>
 							<td>{{job.company_url}}</td>
@@ -44,10 +45,14 @@
 
 
 {% block script %}
+	$(document).ready( function ()
+{
+    $('#datatable').DataTable();
+});
 	<script type="text/javascript">
 		$(document).ready( function ()
 		{
-		    $("#datatable").DataTable();
+		    $('#datatable').DataTable();
 		});
 	</script>
 	<script type="text/javascript">
