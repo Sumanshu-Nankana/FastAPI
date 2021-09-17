@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h1 class="display=5 text-center text-danger mb-3"> Delete Jobs</h1>
+				<h1 class="display=5 text-center text-danger mb-3"> Update and Delete Jobs</h1>
 			</div>
 			<div id="result" class="text-danger text-bold lead"></div>
 		</div>
@@ -33,7 +33,9 @@
 							<td>{{job.company}}</td>
 							<td>{{job.company_url}}</td>
 							<td>{{job.location}}</td>
-							<td><button class="btn btn-danger btn-sm" onclick="delete_job({{job.id}})">Delete</button></td>
+							<td><button class="btn btn-danger btn-sm" onclick="delete_job({{job.id}})">Delete</button>
+								<a href="/updatejob/{{job.id}}" class="btn btn-primary">Edit</a>
+							</td>
 						</tr>
 					{% endfor %}
 				</tbody>

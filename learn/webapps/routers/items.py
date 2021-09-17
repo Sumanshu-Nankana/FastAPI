@@ -29,6 +29,14 @@ def item_detail(request: Request, id: int, db: Session = Depends(get_db)):
     )
 
 
+@router.get("/update/{id}")
+def update_item(id: int, request: Request, db: Session = Depends(get_db)):
+    item = db.query(Items).filter(Items.id == id).first()
+    return templates.TemplateResponse(
+        "update_item.html", {"request": request, "item": item}
+    )
+
+
 @router.get("/create-an-item")
 def create_an_item(request: Request):
     return templates.TemplateResponse("create_item.html", {"request": request})
@@ -92,7 +100,7 @@ async def create_an_item(request: Request, db: Session = Depends(get_db)):
         )
 
 
-@router.get("/delete-item")
+@router.get("/update-delete-item")
 def show_items_to_delete(request: Request, db: Session = Depends(get_db)):
     errors = []
     token = request.cookies.get("access_token")
@@ -111,7 +119,7 @@ def show_items_to_delete(request: Request, db: Session = Depends(get_db)):
             user = db.query(User).filter(User.email == email).first()
             items = db.query(Items).filter(Items.owner_id == user.id).all()
             return templates.TemplateResponse(
-                "show_items_to_delete.html", {"request": request, "items": items}
+                "show_items_to_update_delete.html", {"request": request, "items": items}
             )
         except Exception as e:
             print(e)

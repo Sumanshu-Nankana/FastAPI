@@ -61,11 +61,19 @@ async def create_job(request: Request, db: Session = Depends(get_db)):
     return templates.TemplateResponse("jobs/create_job.html", form.__dict__)
 
 
-@router.get("/delete-job")
+@router.get("/update-delete-job")
 def show_jobs_to_delete(request: Request, db: Session = Depends(get_db)):
     jobs = list_jobs(db=db)
     return templates.TemplateResponse(
-        "jobs/show_jobs_to_delete.html", {"request": request, "jobs": jobs}
+        "jobs/show_jobs_to_update_delete.html", {"request": request, "jobs": jobs}
+    )
+
+
+@router.get("/updatejob/{id}")
+def updatejob(id: int, request: Request, db: Session = Depends(get_db)):
+    job = retrieve_job(id=id, db=db)
+    return templates.TemplateResponse(
+        "jobs/update_job.html", {"request": request, "job": job}
     )
 
 

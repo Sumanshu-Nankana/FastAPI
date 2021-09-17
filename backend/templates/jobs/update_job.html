@@ -1,0 +1,40 @@
+{% extends 'shared/base.html' %}
+
+{% block title %}
+	<title>Update a Job Post</title>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h3 class="text-center display">Update a Job Post</h3>
+		{% for error in errors %}
+			<div class="alert alert-danger" role="alert">
+				{{ error }}
+			</div>
+		{% endfor %}
+		<form method="POST">
+			<div class="mb-3">
+				<label for="title" class="form-label">Job Title</label>
+			    <input type="text" required class="form-control" name="title" value="{{job.title}}" placeholder="Job title here">
+			</div>
+			<div class="mb-3">
+				<label for="company" class="form-label">Company Name</label>
+				<input type="text" required class="form-control" name="company" value="{{job.company}}" placeholder="Company Name e.g. Google">
+			</div>
+			<div class="mb-3">
+				<label for="company_url" class="form-label">Company URL</label>
+				<input type="text" class="form-control" name="company_url" value="{{job.company_url}}" placeholder="Company URL e.g. https://www.python.org">
+			</div>
+			<div class="mb-3">
+				<label for="location" class="form-label">Job Location</label>
+				<input type="text" required class="form-control" name="location" value="{{job.location}}" placeholder="Job Location e.g. India">
+			</div>
+			<div class="mb-3">
+				<label for="company" class="form-label">Job Description</label>
+				<textarea class="form-control" required name="description">{{job.description}}</textarea>
+				<div id="help" class="form-text">Please provide complete Job description,requirements,perks and benefits.</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Update</button>
+		</form>
+	</div>
+{% endblock %}
