@@ -107,7 +107,7 @@ def show_items_to_delete(request: Request, db: Session = Depends(get_db)):
     if token is None:
         errors.append("Kindly Login/Authenticate")
         return templates.TemplateResponse(
-            "show_items_to_delete.html", {"request": request, "errors": errors}
+            "show_items_to_update_delete.html", {"request": request, "errors": errors}
         )
     else:
         try:
@@ -125,7 +125,8 @@ def show_items_to_delete(request: Request, db: Session = Depends(get_db)):
             print(e)
             errors.append("Something is wrong!!, May be you are not Authenticated")
             return templates.TemplateResponse(
-                "show_items_to_delete.html", {"request": request, "errors": errors}
+                "show_items_to_update_delete.html",
+                {"request": request, "errors": errors},
             )
 
 

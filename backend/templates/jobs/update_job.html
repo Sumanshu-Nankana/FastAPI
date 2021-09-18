@@ -12,7 +12,7 @@
 				{{ error }}
 			</div>
 		{% endfor %}
-		<form method="POST">
+		<form id="update-form">
 			<div class="mb-3">
 				<label for="title" class="form-label">Job Title</label>
 			    <input type="text" required class="form-control" name="title" value="{{job.title}}" placeholder="Job title here">
@@ -34,7 +34,33 @@
 				<textarea class="form-control" required name="description">{{job.description}}</textarea>
 				<div id="help" class="form-text">Please provide complete Job description,requirements,perks and benefits.</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Update</button>
+			<!--<button type="submit" class="btn btn-primary" onclick="update_job()">Update</button>-->
 		</form>
+		<button type="submit" class="btn btn-primary" onclick="update_job({{job.id}})">Update</button>
 	</div>
 {% endblock %}
+
+{% block script %}
+	<script type="text/javascript">
+		function update_job(id)
+		{
+			fdata = document.getElementById("update-form")
+			const formData = new FormData(fdata)
+			var now = new Date()
+    		var day = ("0" + now.getDate()).slice(-2)
+    		var month = ("0" + (now.getMonth() + 1)).slice(-2)
+    		var today = now.getFullYear() + "-" + (month) + "-" + (day)
+			formData.append("date_posted", today)
+			console.log(today)		
+
+			fetch("/job/update/"+id, {method:'PUT', body:formData}).
+			then(response => console.log(response.json()));
+		}
+	</script>
+{% endblock %}
+
+
+
+
+
+

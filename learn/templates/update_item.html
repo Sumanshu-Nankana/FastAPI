@@ -12,17 +12,35 @@
   				{{ error }}
 			</div>
 		{% endfor %}
-		<form method="POST">
+		<div id="result" class="text-success"></div>
+		<form id="form-data">
 		  <div class="mb-3">
 		    <label for="title" class="form-label">Item Title</label>
-		    <input type="text" class="form-control" required name="title" value={{item.title}} placeholder="enter item title">
+		    <input type="text" id="title" class="form-control" required name="title" value={{item.title}} placeholder="enter item title">
 		 </div>
 		 <div class="mb-3">
     		<label for="description" class="form-label">Item Description</label>
-    		<textarea class="form-control" required name="description" placeholder="Enter item description">{{ item.description }}</textarea>
+    		<textarea class="form-control" id="description" required name="description" placeholder="Enter item description">{{ item.description }}</textarea>
 			<div class="form-text">Describe all details about items</div>
   		</div>
-  			<button type="submit" class="btn btn-primary">Update</button>
+  			<!--<button type="submit" class="btn btn-primary">Update</button>-->
 		</form>
+		<button type="submit" class="btn btn-primary" onclick="update_item({{item.id}})">Update</button>
 	</div>
+{% endblock %}
+
+{% block script %}
+	<script type="text/javascript">
+		function update_item(id)
+		{
+			var data = {}	
+			data["title"] = document.getElementById("title").value
+			data["description"] = document.getElementById("description").value
+			fetch("/item/update/"+id, {method:'PUT',
+				  headers: {'Content-Type':'application/json',},
+				  body: JSON.stringify(data),})
+			.then(response => response.json())
+			.then(data => document.getElementById("result").innerHTML = data.message) 
+		}
+	</script>
 {% endblock %}
