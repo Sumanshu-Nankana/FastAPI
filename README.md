@@ -40,3 +40,24 @@ Course Name: FastAPI Full Stack Web Development (API + Webapp)
 - Then comment the Base.metdata.create_all(bind=engine) line in main.py
   Because, now tables will get created using alembic
 
+
+## Steps to set connectivity between Docker Container (Web-app) with Postgres Database (On Localhost)
+
+>Step1: Update postgresql configuration file, to allow all remote connection access
+```sudo nano /etc/postgresql/12/main/postgresql.conf```
+Find the line "listen_address" and uncomment it , also change from localhost to '*', So after change it should look like this
+listen_address = '*'
+
+>Step2: Update postgres hba configuration file, to allow docker container connection to host database
+```sudo nano /etc/postgresql/12/main/pg_hba.conf```
+#### host db_name user_name docker_ip/16  trust
+> host testing postgres 172.17.0.0/16 trust  
+
+>Step3: Restart the postgres service
+```sudo /etc/init.d/postgresql restart```
+
+>Step4: Build the docker image
+```docker build --network=host -t myappimage . ```
+
+>Step5: Run the container
+```docker run -d --network=host -e "DB_DBNAME=testing" -e "DB_PORT=5432" -e "DB_USER=postgres" -e "DB_PASS=postgres" -e "DB_HOST=127.0.0.1" --name myappcontainer myappimage```
