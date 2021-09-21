@@ -12,10 +12,13 @@
 		{% endif %}
 		<div class="row">
 			{% for item in items %}
-				<div class="col-md-4">
+				<div class="col-md-4 mr-auto">
 					{% with obj=item %}
 						{% include 'card.html' %}
 					{% endwith %}
+					{% if loop.index % 3 %}
+						<br>
+					{% endif %}
 				</div>
 			{% endfor %}
 		</div>

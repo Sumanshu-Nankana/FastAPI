@@ -1,26 +1,18 @@
 fastapi
 uvicorn
-
 sqlalchemy
 python-dotenv
 psycopg2-binary
-
 pydantic[email]
-
 bcrypt
 passlib
-
 pytest
 requests
-
 pytest-cov
-
 python-jose
-
 autopep8
 black   # black . --exclude=env
-
 jinja2
-
 alembic
 aiofiles
+python-multipart

@@ -1,0 +1,11 @@
+# Ignore all those files which started with 00 and 01
+
+00*
+01*
+
+# Ignore directory htmlcov, migrations
+/htmlcov
+/migrations
+
+# Ignore test.db file
+test.db
