@@ -71,12 +71,14 @@ listen_address = '*'
 
 ## Deploy using docker-compose
 
->> Step1 : Create the docker-compose.yml file
+> Check the version of docker-compose : ```docker-compose -v```
 
->> Step2 : To Build and Start the Container, issue 
+> Step1 : Create the docker-compose.yml file
+
+> Step2 : To Build and Start the Container, issue 
 
 ```docker-compose up -d```
 
->> Step3 : To Stop all the container/services, issue
+> Step3 : To Stop all the container/services, issue
 
 ```docker-compose down```
