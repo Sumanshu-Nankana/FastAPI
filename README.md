@@ -68,3 +68,15 @@ listen_address = '*'
 >Step5: Run the container
 
 ```docker run -d --network=host -e "DB_DBNAME=testing" -e "DB_PORT=5432" -e "DB_USER=postgres" -e "DB_PASS=postgres" -e "DB_HOST=127.0.0.1" --name myappcontainer myappimage```
+
+## Deploy using docker-compose
+
+>> Step1 : Create the docker-compose.yml file
+
+>> Step2 : To Build and Start the Container, issue 
+
+```docker-compose up -d```
+
+>> Step3 : To Stop all the container/services, issue
+
+```docker-compose down```
