@@ -18,10 +18,7 @@ app = FastAPI(
     title="JobBoard",
     version="0.0.1",
     description=description,
-    contact={
-        "name": "Sumanshu Nankana",
-        "email": "sumanshunankana@gmail.com",
-    },
+    contact={"name": "Sumanshu Nankana", "email": "sumanshunankana@gmail.com",},
     openapi_tags=tags_metadata,
 )
 

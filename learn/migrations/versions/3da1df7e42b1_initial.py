@@ -35,10 +35,7 @@ def upgrade():
         sa.Column("description", sa.String(), nullable=True),
         sa.Column("date_posted", sa.Date(), nullable=True),
         sa.Column("owner_id", sa.Integer(), nullable=True),
-        sa.ForeignKeyConstraint(
-            ["owner_id"],
-            ["users.id"],
-        ),
+        sa.ForeignKeyConstraint(["owner_id"], ["users.id"],),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_index(op.f("ix_items_id"), "items", ["id"], unique=False)
