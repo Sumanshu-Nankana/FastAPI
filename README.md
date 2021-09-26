@@ -14,6 +14,9 @@ Course Name: FastAPI Full Stack Web Development (API + Webapp)
 -  ALTER USER postgres PASSWORD 'postgres';
 -  \q
 
+## Some postgres commands
+- \l (To list all databases)
+
 ## How to check and restart postgresql service in Ubuntu
 -  ```sudo systemctl status postgresql```    (to check status of postgresql service)
 -  ```sudo service postgresql restart```     (to restart the postgresql service)
